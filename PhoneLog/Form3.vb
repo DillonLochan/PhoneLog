@@ -97,7 +97,7 @@ Public Class ForeignCompany
                     Dim fcName = From fc In plcontext.ForeignCompanies Where fc.FName = company_name_txt.Text Select fc.FName
                     Dim fcPn = From fc In plcontext.ForeignCompanies Where fc.PhoneNumber = phone_number_txt.Text Select fc.PhoneNumber
                     If fcName.Any Then
-                        strOutput = "Company Name" & vbNewLine
+                        strOutput = String.Concat(strOutput, "Company Name" & vbNewLine)
                     ElseIf fcPn.Any Then
                         strOutput = String.Concat(strOutput, "Phone Number" & vbNewLine)
                     ElseIf strOutput <> "" Then

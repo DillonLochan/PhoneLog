@@ -214,13 +214,15 @@ Public Class EmployeeMaintenance
                             End If
                         End If
                         ' Deletes employee ID from call  records
-                        If callData.Any And callData.First.EmployeeID = empID Then
-                            For Each item In callList
-                                If callData.First.EmployeeID = item.EmployeeID Then
-                                    item.EmployeeID = Nothing
-                                    plcontext.SaveChanges()
-                                End If
-                            Next
+                        If callData.Any Then
+                            If callData.First.EmployeeID = empID Then
+                                For Each item In callList
+                                    If callData.First.EmployeeID = item.EmployeeID Then
+                                        item.EmployeeID = Nothing
+                                        plcontext.SaveChanges()
+                                    End If
+                                Next
+                            End If
                         End If
                         ' Gets selected employee record
                         Dim empDel = (From emp In plcontext.Employees Where emp.ID = empID Select emp).FirstOrDefault
