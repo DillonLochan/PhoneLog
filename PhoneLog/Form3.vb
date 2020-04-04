@@ -277,7 +277,7 @@ Public Class ForeignCompany
         Using plcontext As New PhoneLogEntities1
             ' Populates employee combo box
             Dim empData = From emp In plcontext.Employees Where emp.Username <> "admin" Select emp
-            If empData IsNot Nothing Then
+            If empData Is Nothing Then
                 ' Prompts user that there are no employees
                 MessageBox.Show("There are no Employees")
                 ' Redirects user to employee maintanence form
