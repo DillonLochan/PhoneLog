@@ -180,6 +180,9 @@ Public Class Calls
     End Sub
     ' Create new button event
     Private Sub create_new_call_btn_Click(sender As Object, e As EventArgs) Handles create_new_call_btn.Click
+        ' Clears selected call ID 
+        CallID = Nothing ' Sets CallID to nothing, 
+        CallUpID = Nothing ' Sets CallUpID to nothing
         ' Hides lable and date picker 
         Label1.Hide()
         DateTimePicker1.Hide()

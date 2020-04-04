@@ -60,6 +60,9 @@ Public Class EmployeeMaintenance
     End Sub
     ' Create button event
     Private Sub create_new_Click(sender As Object, e As EventArgs) Handles create_new_emp_btn.Click
+        ' Clears selected empolyee ID
+        EmpID = Nothing ' Sets EmpID to nothing
+        empComboBox.SelectedIndex = -1 ' Sets employee combo box display to blank
         Label1.Hide() ' Hides employee ID label 
         empComboBox.Hide() ' Hides employee select combobox  
         Label2.Hide() ' Hides Employee name label

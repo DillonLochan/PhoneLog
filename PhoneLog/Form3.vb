@@ -263,6 +263,9 @@ Public Class ForeignCompany
     End Sub
     ' Create button event
     Private Sub create_new_btn_Click(sender As Object, e As EventArgs) Handles create_new_fc_btn.Click
+        ' Clears selected Foreign Comapany ID
+        FcID = Nothing ' Sets FcId nothing
+        fcComboBox.SelectedIndex = -1 ' Sets foreign company combo box display to blank
         Label1.Hide() ' Hides label
         fcComboBox.Hide() ' Hides employee select combobox  
         Label2.Hide() ' Hides employee ID label 
