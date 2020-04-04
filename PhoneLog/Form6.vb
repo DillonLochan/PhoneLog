@@ -19,7 +19,7 @@
     ' Employee button event, redirects user to Employee Maintenace from
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles employees_btn.Click
         Me.Hide()
-        Dim emp As EmployeeMaintenace = New EmployeeMaintenace()
+        Dim emp As EmployeeMaintenance = New EmployeeMaintenance()
         emp.Session = Session
         emp.Show()
     End Sub

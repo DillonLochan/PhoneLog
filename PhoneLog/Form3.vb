@@ -6,8 +6,8 @@ Public Class ForeignCompany
     ' Page load
     Private Sub ForeignCompany_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Using plcontext As New PhoneLogEntities1
-            save_fc_btn.Hide()
-            delete_fc_btn.Hide()
+            save_fc_btn.Hide() ' Hides save button
+            delete_fc_btn.Hide() ' Hides delete button
             ' Displays update message using foreign company ID
             If FcID <> "" Then
                 Dim fcdate = From fc In plcontext.ForeignCompanies Where fc.ID = FcID Select fc
@@ -16,8 +16,8 @@ Public Class ForeignCompany
             ' Populates foreign companies combobox
             Dim fcData = From fc In plcontext.ForeignCompanies Select fc
             fcComboBox.DataSource = fcData.ToList
-            fcComboBox.DisplayMember = "FName"
-            fcComboBox.ValueMember = "ID"
+            fcComboBox.DisplayMember = "FName" ' Sets combo box to display foreign company name 
+            fcComboBox.ValueMember = "ID" ' Set to foreign company ID
             fcComboBox.SelectedIndex = -1 ' creates a blank space in combobox
             'Set AutoCompleteMode.
             fcComboBox.AutoCompleteMode = AutoCompleteMode.Suggest
@@ -105,15 +105,16 @@ Public Class ForeignCompany
                     Else
                         ' Saves foreign company to database
                         Dim Fc As New ForeignCompany
+                        ' Sets values to be saved
                         Fc.FName = company_name_txt.Text
                         Fc.PhoneNumber = phone_number_txt.Text
                         Fc.City = city_txt.Text
                         Fc.Country = country_txt.Text
                         Fc.EmployeeID = empComboBox.SelectedValue.ToString
-                        plcontext.ForeignCompanies.Add(Fc)
+                        plcontext.ForeignCompanies.Add(Fc) ' Adds record to be saved
                         Dim ask As MsgBoxResult = MsgBox("Confirm Save", MsgBoxStyle.YesNo)
                         If ask = MsgBoxResult.Yes Then
-                            plcontext.SaveChanges()
+                            plcontext.SaveChanges() ' Inserts record into database
                             ' Gets foreign company ID
                             Dim fcData = From f In plcontext.ForeignCompanies Where f.FName = company_name_txt.Text Select f
                             FcID = fcData.First.ID
@@ -156,7 +157,7 @@ Public Class ForeignCompany
                         FcData.EmployeeID = empComboBox.SelectedValue.ToString
                         Dim ask As MsgBoxResult = MsgBox("Confirm Save", MsgBoxStyle.YesNo)
                         If ask = MsgBoxResult.Yes Then
-                            plcontext.SaveChanges()
+                            plcontext.SaveChanges() ' Updates record  in database
                             If callUp.Any Then
                                 ' Changes company name in associated calls
                                 If callUp.First.ForeignCompanyName.ToString <> company_name_txt.Text Then
@@ -281,7 +282,7 @@ Public Class ForeignCompany
                 MessageBox.Show("There are no Employees")
                 ' Redirects user to employee maintanence form
                 Me.Hide()
-                Dim emp As EmployeeMaintenace = New EmployeeMaintenace()
+                Dim emp As EmployeeMaintenance = New EmployeeMaintenance()
                 emp.Session = Session
                 emp.Show()
             Else

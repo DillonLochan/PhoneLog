@@ -1,6 +1,6 @@
 ﻿Imports System.Text.RegularExpressions
 
-Public Class EmployeeMaintenace
+Public Class EmployeeMaintenance
     Public Property Session As String ' Used to create a session using user ID
     Public Property EmpID As String ' Stores selected employee ID
     ' Page load
@@ -19,7 +19,7 @@ Public Class EmployeeMaintenace
                 empComboBox.DataSource = unInfo.ToList
                 empComboBox.DisplayMember = "Name" ' Employee Name
                 empComboBox.ValueMember = "ID" ' EMployee ID
-                empComboBox.SelectedIndex = -1
+                empComboBox.SelectedIndex = -1 ' Set combo box to display blank
                 'Set AutoCompleteMode.
                 empComboBox.AutoCompleteMode = AutoCompleteMode.Suggest
                 empComboBox.AutoCompleteSource = AutoCompleteSource.ListItems
@@ -102,10 +102,10 @@ Public Class EmployeeMaintenace
                             'Sets values
                             emp.Name = emp_name_txt.Text
                             emp.Extension = ext_txt.Text
-                            plcontext.Employees.Add(emp)
+                            plcontext.Employees.Add(emp) ' Adds record to be save
                             Dim ask As MsgBoxResult = MsgBox("Confirm Save", MsgBoxStyle.YesNo)
                             If ask = MsgBoxResult.Yes Then
-                                plcontext.SaveChanges()
+                                plcontext.SaveChanges() ' Inserts record into database
                                 ' Gets employee ID of newly saved employee
                                 Dim en = From n In plcontext.Employees Where n.Name = emp_name_txt.Text Select n.ID
                                 EmpID = en.First
@@ -115,7 +115,7 @@ Public Class EmployeeMaintenace
                         End If
                         ' Redirects back to employee page and display update prompt
                         Me.Hide()
-                        Dim empForm As EmployeeMaintenace = New EmployeeMaintenace()
+                        Dim empForm As EmployeeMaintenance = New EmployeeMaintenance()
                         empForm.Session = Session
                         empForm.EmpID = EmpID
                         empForm.Show()
@@ -152,7 +152,7 @@ Public Class EmployeeMaintenace
                             empUp.Extension = ext_txt.Text
                             Dim ask As MsgBoxResult = MsgBox("Confirm Save", MsgBoxStyle.YesNo)
                             If ask = MsgBoxResult.Yes Then
-                                plcontext.SaveChanges()
+                                plcontext.SaveChanges() ' Updates record in data base
                                 ' Checks if employee name exist in call records 
                                 If callUp.Any Then
                                     If callUp.First.EmployeeName <> emp_name_txt.Text Then
@@ -171,9 +171,9 @@ Public Class EmployeeMaintenace
                         End If
                         ' Redirects back to employee page and display update prompt
                         Me.Hide()
-                        Dim empForm As EmployeeMaintenace = New EmployeeMaintenace()
-                        empForm.Session = Session
-                        empForm.EmpID = EmpID
+                        Dim empForm As EmployeeMaintenance = New EmployeeMaintenance()
+                        empForm.Session = Session ' Sets seesion
+                        empForm.EmpID = EmpID ' Sets empID with employee ID
                         empForm.Show()
                     End If
                 End If
@@ -251,15 +251,16 @@ Public Class EmployeeMaintenace
                 End If
             End If
         End Using
+        '  Refresh the employee maintenace
         Me.Hide()
-        Dim empForm As EmployeeMaintenace = New EmployeeMaintenace()
+        Dim empForm As EmployeeMaintenance = New EmployeeMaintenance()
         empForm.Session = Session
         empForm.ShowDialog()
     End Sub
     ' Search button event, refreshes form
     Private Sub search_btn_Click(sender As Object, e As EventArgs) Handles search_btn.Click
         Me.Hide()
-        Dim emp As EmployeeMaintenace = New EmployeeMaintenace()
+        Dim emp As EmployeeMaintenance = New EmployeeMaintenance()
         emp.Session = Session
         emp.Show()
     End Sub

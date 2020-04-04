@@ -207,6 +207,7 @@ Public Class Calls
                 If CallID Is Nothing Then
                     ' Sets Data to stores in to new call record using data from form feilds
                     Dim callData As New [Call]
+                    ' Sets valuse to be saved
                     callData.PhoneNumber = phone_number_txt.Text
                     callData.ForeignCompanyID = fcComboBox.SelectedValue
                     callData.ForeignCompanyName = fcData.First.FName
@@ -247,7 +248,7 @@ Public Class Calls
                         ' Propmts user to confrim save
                         Dim ask As MsgBoxResult = MsgBox("Confirm Save", MsgBoxStyle.YesNo)
                         If ask = MsgBoxResult.Yes Then
-                            plContext.SaveChanges() ' updates record
+                            plContext.SaveChanges() ' updates record in database
                             CallUpID = CallID
                         ElseIf ask = MsgBoxResult.No Then
                             Refresh()
