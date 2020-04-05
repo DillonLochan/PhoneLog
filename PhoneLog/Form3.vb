@@ -214,7 +214,7 @@ Public Class ForeignCompany
             callList = callData.ToList
             If callData.Any Then
                 'Prompts user that foreign company is linked to calls and they wish to delete
-                Dim ask As MsgBoxResult = MsgBox("This emplyee is linked to calls, Do wish to delete", MsgBoxStyle.YesNo)
+                Dim ask As MsgBoxResult = MsgBox("This company is linked to calls, Do wish to delete", MsgBoxStyle.YesNo)
                 If ask = MsgBoxResult.Yes Then
                     ' Second delete comformation prompt
                     Dim ask2 As MsgBoxResult = MsgBox("Confirm Delete", MsgBoxStyle.YesNo)

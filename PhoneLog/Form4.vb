@@ -19,11 +19,11 @@ Public Class Calls
             DateTimePicker1.CustomFormat = " "
             DateTimePicker1.Format = DateTimePickerFormat.Custom
             ' Populates the hour combo box
-            For i As Integer = 1 To 24
+            For i As Integer = 0 To 24
                 hrComboBox.Items.Add(i)
             Next
             ' Populates the mintues combo box
-            For i As Integer = 1 To 60
+            For i As Integer = 0 To 60
                 minComboBox.Items.Add(i)
             Next
             ' If a call is selected
@@ -40,13 +40,13 @@ Public Class Calls
                     Dim hr As String = words(0)
                     Dim min As String = words(1)
                     ' Sets hour and mintues combo box 
-                    For i As Integer = 1 To 24
+                    For i As Integer = 0 To 24
                         hrComboBox.Items.Add(i)
                         If i = hr Then
                             hrComboBox.SelectedIndex = i - 1
                         End If
                     Next
-                    For i As Integer = 1 To 60
+                    For i As Integer = 0 To 60
                         minComboBox.Items.Add(i)
                         If i = min Then
                             minComboBox.SelectedIndex = i - 1
@@ -188,10 +188,27 @@ Public Class Calls
         DateTimePicker1.Hide()
         ' Clears all feilds and sets comoboxes to blank
         phone_number_txt.Clear()
-        fcComboBox.SelectedIndex = -1
         duration_txt.Clear()
-        empComboBox.SelectedIndex = -1
         save_call_btn.Show()
+        Using plContext As New PhoneLogEntities1
+            Dim fcData = From fc In plContext.ForeignCompanies Select fc
+            fcComboBox.DataSource = fcData.ToList
+            fcComboBox.DisplayMember = "FName"
+            fcComboBox.ValueMember = "ID"
+            fcComboBox.SelectedIndex = -1
+            'Set AutoCompleteMode.
+            fcComboBox.AutoCompleteMode = AutoCompleteMode.Suggest
+            fcComboBox.AutoCompleteSource = AutoCompleteSource.ListItems
+            ' Populates employee combo box
+            Dim empData = From emp In plContext.Employees Where emp.Username <> "admin" Select emp
+            empComboBox.DataSource = empData.ToList
+            empComboBox.DisplayMember = "Name"
+            empComboBox.ValueMember = "ID"
+            empComboBox.SelectedIndex = -1
+            'Set AutoCompleteMode.
+            empComboBox.AutoCompleteMode = AutoCompleteMode.Suggest
+            empComboBox.AutoCompleteSource = AutoCompleteSource.ListItems
+        End Using
     End Sub
     ' Save button event
     Private Sub save_call_btn_Click(sender As Object, e As EventArgs) Handles save_call_btn.Click
