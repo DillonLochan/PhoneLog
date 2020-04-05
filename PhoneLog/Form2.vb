@@ -242,7 +242,7 @@ Public Class EmployeeMaintenance
                 End If
             Else
                 ' If employee is not associted with foreign companies or calls
-                Dim ask As MsgBoxResult = MsgBox("Confirm ", MsgBoxStyle.YesNo)
+                Dim ask As MsgBoxResult = MsgBox("Confirm Delete", MsgBoxStyle.YesNo)
                 If ask = MsgBoxResult.Yes Then
                     ' Gets selected employee record
                     Dim empDel = (From emp In plcontext.Employees Where emp.ID = empID Select emp).FirstOrDefault
