@@ -33,12 +33,12 @@
         Dim strOutput As String
         strOutput = ""
         ' Checks of user name is less than 5 characters
-        If username_txt.Text.Count < 5 Then
-            MessageBox.Show("Username must be 5 Charateers or more")
+        If username_txt.Text.Count < 5 And username_txt.Text IsNot String.Empty Then
+            MessageBox.Show("Username must be 5 Characters or more")
         End If
         ' Checks of password is less than 5 characters
-        If password_txt.Text.Count < 5 Then
-            MessageBox.Show("Password must be 5 Charateers or more")
+        If password_txt.Text.Count < 5 And password_txt.Text IsNot String.Empty Then
+            MessageBox.Show("Password must be 5 Characters or more")
         End If
         ' If username, password and confirm password not empty
         If username_txt.Text IsNot String.Empty And password_txt.Text IsNot String.Empty And password_confirm_txt.Text IsNot String.Empty Then
@@ -84,7 +84,9 @@
             ElseIf password_confirm_txt Is String.Empty Then
                 strOutput = String.Concat(strOutput, "Comfirm password" & vbNewLine)
             End If
-            MessageBox.Show(strOutput)
+            If strOutput <> "" Then
+                MessageBox.Show(strOutput)
+            End If
         End If
     End Sub
     ' Password confirm text xhange event, checks if confirm password is the same as password and display a message under feild
