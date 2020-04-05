@@ -36,39 +36,44 @@ Partial Class AddUser
         Me.menu_btn = New System.Windows.Forms.Button()
         Me.edit_user_btn = New System.Windows.Forms.Button()
         Me.userChk = New System.Windows.Forms.Label()
+        Me.add_user_btn = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(25, 98)
+        Me.Label1.Location = New System.Drawing.Point(67, 234)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(136, 13)
+        Me.Label1.Size = New System.Drawing.Size(363, 32)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Please Select an Employee"
         '
         'empComboBox
         '
         Me.empComboBox.FormattingEnabled = True
-        Me.empComboBox.Location = New System.Drawing.Point(167, 95)
+        Me.empComboBox.Location = New System.Drawing.Point(445, 227)
+        Me.empComboBox.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.empComboBox.Name = "empComboBox"
-        Me.empComboBox.Size = New System.Drawing.Size(205, 21)
+        Me.empComboBox.Size = New System.Drawing.Size(540, 39)
         Me.empComboBox.TabIndex = 1
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(164, 50)
+        Me.Label2.Location = New System.Drawing.Point(437, 119)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(51, 13)
+        Me.Label2.Size = New System.Drawing.Size(132, 32)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Add User"
         '
         'save_btn
         '
-        Me.save_btn.Location = New System.Drawing.Point(140, 289)
+        Me.save_btn.Location = New System.Drawing.Point(373, 689)
+        Me.save_btn.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.save_btn.Name = "save_btn"
-        Me.save_btn.Size = New System.Drawing.Size(75, 23)
+        Me.save_btn.Size = New System.Drawing.Size(200, 55)
         Me.save_btn.TabIndex = 3
         Me.save_btn.Text = "Save"
         Me.save_btn.UseVisualStyleBackColor = True
@@ -76,76 +81,85 @@ Partial Class AddUser
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(43, 143)
+        Me.Label3.Location = New System.Drawing.Point(115, 341)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(58, 13)
+        Me.Label3.Size = New System.Drawing.Size(153, 32)
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Username:"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(43, 186)
+        Me.Label4.Location = New System.Drawing.Point(115, 444)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(56, 13)
+        Me.Label4.Size = New System.Drawing.Size(147, 32)
         Me.Label4.TabIndex = 5
         Me.Label4.Text = "Password:"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(43, 227)
+        Me.Label5.Location = New System.Drawing.Point(115, 541)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(94, 13)
+        Me.Label5.Size = New System.Drawing.Size(253, 32)
         Me.Label5.TabIndex = 6
         Me.Label5.Text = "Confirm Password:"
         '
         'username_txt
         '
-        Me.username_txt.Location = New System.Drawing.Point(158, 140)
+        Me.username_txt.Location = New System.Drawing.Point(421, 334)
+        Me.username_txt.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.username_txt.Name = "username_txt"
-        Me.username_txt.Size = New System.Drawing.Size(200, 20)
+        Me.username_txt.Size = New System.Drawing.Size(527, 38)
         Me.username_txt.TabIndex = 7
         '
         'password_txt
         '
-        Me.password_txt.Location = New System.Drawing.Point(158, 179)
+        Me.password_txt.Location = New System.Drawing.Point(421, 427)
+        Me.password_txt.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.password_txt.Name = "password_txt"
         Me.password_txt.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.password_txt.Size = New System.Drawing.Size(200, 20)
+        Me.password_txt.Size = New System.Drawing.Size(527, 38)
         Me.password_txt.TabIndex = 8
         '
         'password_confirm_txt
         '
-        Me.password_confirm_txt.Location = New System.Drawing.Point(158, 220)
+        Me.password_confirm_txt.Location = New System.Drawing.Point(421, 525)
+        Me.password_confirm_txt.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.password_confirm_txt.Name = "password_confirm_txt"
         Me.password_confirm_txt.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.password_confirm_txt.Size = New System.Drawing.Size(200, 20)
+        Me.password_confirm_txt.Size = New System.Drawing.Size(527, 38)
         Me.password_confirm_txt.TabIndex = 9
         '
         'msg_lb
         '
         Me.msg_lb.AutoSize = True
-        Me.msg_lb.Location = New System.Drawing.Point(155, 243)
+        Me.msg_lb.Location = New System.Drawing.Point(413, 579)
+        Me.msg_lb.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.msg_lb.Name = "msg_lb"
-        Me.msg_lb.Size = New System.Drawing.Size(39, 13)
+        Me.msg_lb.Size = New System.Drawing.Size(102, 32)
         Me.msg_lb.TabIndex = 10
         Me.msg_lb.Text = "Label6"
         '
         'menu_btn
         '
-        Me.menu_btn.Location = New System.Drawing.Point(12, 9)
+        Me.menu_btn.Location = New System.Drawing.Point(32, 21)
+        Me.menu_btn.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.menu_btn.Name = "menu_btn"
-        Me.menu_btn.Size = New System.Drawing.Size(75, 23)
+        Me.menu_btn.Size = New System.Drawing.Size(200, 55)
         Me.menu_btn.TabIndex = 11
         Me.menu_btn.Text = "Menu"
         Me.menu_btn.UseVisualStyleBackColor = True
         '
         'edit_user_btn
         '
-        Me.edit_user_btn.Location = New System.Drawing.Point(297, 9)
+        Me.edit_user_btn.Location = New System.Drawing.Point(792, 21)
+        Me.edit_user_btn.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.edit_user_btn.Name = "edit_user_btn"
-        Me.edit_user_btn.Size = New System.Drawing.Size(75, 23)
+        Me.edit_user_btn.Size = New System.Drawing.Size(200, 55)
         Me.edit_user_btn.TabIndex = 12
         Me.edit_user_btn.Text = "Edit Users"
         Me.edit_user_btn.UseVisualStyleBackColor = True
@@ -153,17 +167,28 @@ Partial Class AddUser
         'userChk
         '
         Me.userChk.AutoSize = True
-        Me.userChk.Location = New System.Drawing.Point(155, 163)
+        Me.userChk.Location = New System.Drawing.Point(413, 389)
+        Me.userChk.Margin = New System.Windows.Forms.Padding(8, 0, 8, 0)
         Me.userChk.Name = "userChk"
-        Me.userChk.Size = New System.Drawing.Size(39, 13)
+        Me.userChk.Size = New System.Drawing.Size(102, 32)
         Me.userChk.TabIndex = 13
         Me.userChk.Text = "Label6"
         '
+        'add_user_btn
+        '
+        Me.add_user_btn.Location = New System.Drawing.Point(409, 21)
+        Me.add_user_btn.Name = "add_user_btn"
+        Me.add_user_btn.Size = New System.Drawing.Size(215, 55)
+        Me.add_user_btn.TabIndex = 14
+        Me.add_user_btn.Text = "Add User"
+        Me.add_user_btn.UseVisualStyleBackColor = True
+        '
         'AddUser
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(16.0!, 31.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(384, 361)
+        Me.ClientSize = New System.Drawing.Size(1024, 861)
+        Me.Controls.Add(Me.add_user_btn)
         Me.Controls.Add(Me.userChk)
         Me.Controls.Add(Me.edit_user_btn)
         Me.Controls.Add(Me.menu_btn)
@@ -178,6 +203,7 @@ Partial Class AddUser
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.empComboBox)
         Me.Controls.Add(Me.Label1)
+        Me.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.Name = "AddUser"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "User Maintenance"
@@ -200,4 +226,5 @@ Partial Class AddUser
     Friend WithEvents menu_btn As Button
     Friend WithEvents edit_user_btn As Button
     Friend WithEvents userChk As Label
+    Friend WithEvents add_user_btn As Button
 End Class

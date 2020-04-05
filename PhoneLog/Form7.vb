@@ -76,12 +76,14 @@
             End Using
         Else
             ' If any feild is empty, prompt user to enter feild information
-            strOutput = "Please "
+            strOutput = "Please " & vbNewLine
             If username_txt.Text Is String.Empty Then
                 strOutput = String.Concat(strOutput, "Enter user name" & vbNewLine)
-            ElseIf password_txt.Text Is String.Empty Then
+            End If
+            If password_txt.Text Is String.Empty Then
                 strOutput = String.Concat(strOutput, "Enter Password" & vbNewLine)
-            ElseIf password_confirm_txt Is String.Empty Then
+            End If
+            If password_confirm_txt.Text Is String.Empty Then
                 strOutput = String.Concat(strOutput, "Comfirm password" & vbNewLine)
             End If
             If strOutput <> "" Then
@@ -134,19 +136,21 @@
     ' Username text change event, checks to see if user name exsist as the user enters into the username feild 
     Private Sub username_txt_TextChanged(sender As Object, e As EventArgs) Handles username_txt.TextChanged
         Using plcontext As New PhoneLogEntities1
-            ' Gets record of employees by user name, if any exist with entered username
-            Dim unInfo = From emp In plcontext.Employees Where emp.Username = username_txt.Text Select emp
-            'Displays a message under username feild if username already exist
-            If unInfo.Count <> 0 Then
-                If unInfo.First.Username.ToString IsNot String.Empty Then
-                    userChk.ForeColor = Color.Red
-                    userChk.Text = "User Already exist"
-                    userChk.Show()
+            ' Gets record of employees by user name, if any exist with entered username 
+            If empComboBox.SelectedValue IsNot Nothing Then
+                Dim unInfo = From emp In plcontext.Employees Where emp.Username = username_txt.Text And emp.ID <> empComboBox.SelectedValue.ToString Select emp
+                'Displays a message under username feild if username already exist
+                If unInfo.Count > 0 Then
+                    If unInfo.First.Username.ToString IsNot String.Empty Then
+                        userChk.ForeColor = Color.Red
+                        userChk.Text = "User Already exist"
+                        userChk.Show()
+                    Else
+                        userChk.Hide()
+                    End If
                 Else
                     userChk.Hide()
                 End If
-            Else
-                userChk.Hide()
             End If
         End Using
     End Sub
@@ -162,5 +166,13 @@
                 password_confirm_txt.Text = empData.First.Password
             End Using
         End If
+    End Sub
+    ' Redirects to add user page
+    Private Sub add_user_btn_Click(sender As Object, e As EventArgs) Handles add_user_btn.Click
+        Me.Hide()
+        Dim c As AddUser = New AddUser()
+        c.Session = Session
+        EmpID = Nothing
+        c.Show()
     End Sub
 End Class
