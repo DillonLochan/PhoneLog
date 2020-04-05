@@ -249,7 +249,7 @@ Partial Class ForeignCompany
         Me.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.Name = "ForeignCompany"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Foreign Company Maintence"
+        Me.Text = "Foreign Company Maintenance"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

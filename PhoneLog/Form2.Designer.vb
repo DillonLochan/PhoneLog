@@ -185,7 +185,7 @@ Partial Class EmployeeMaintenance
         Me.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.Name = "EmployeeMaintenance"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Employee Maintenace"
+        Me.Text = "Employee Maintenance"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
