@@ -200,7 +200,6 @@ Public Class ForeignCompany
             If empComboBox.SelectedValue Is Nothing Then
                 strOutput = String.Concat(strOutput, "Select an Employee")
             End If
-            MessageBox.Show(strOutput)
         End If
         If strOutput <> "" Then
             MessageBox.Show(strOutput)
