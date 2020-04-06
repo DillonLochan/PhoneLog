@@ -19,11 +19,11 @@ Public Class Calls
             DateTimePicker1.CustomFormat = " "
             DateTimePicker1.Format = DateTimePickerFormat.Custom
             ' Populates the hour combo box
-            For i As Integer = 0 To 24
+            For i As Integer = 0 To 23
                 hrComboBox.Items.Add(i)
             Next
             ' Populates the mintues combo box
-            For i As Integer = 0 To 60
+            For i As Integer = 0 To 59
                 minComboBox.Items.Add(i)
             Next
             ' If a call is selected
