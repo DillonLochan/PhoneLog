@@ -102,7 +102,7 @@ Public Class EmployeeMaintenance
                         ' Save Employee to database 
                         If id_lb.Text Is String.Empty Then
                             Dim emp As New Employee()
-                            'Sets values
+                            'Sets values to be saved
                             emp.Name = emp_name_txt.Text
                             emp.Extension = ext_txt.Text
                             plcontext.Employees.Add(emp) ' Adds record to be save

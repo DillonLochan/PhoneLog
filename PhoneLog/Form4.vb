@@ -140,37 +140,41 @@ Public Class Calls
         'Removes any characters that are not numbers 
         Dim digitsOnly As Regex = New Regex("[^\d]")
         phone_number_txt.Text = digitsOnly.Replace(phone_number_txt.Text, "")
-        Using plcontext As New PhoneLogEntities1
-            ' Populates foreign company combo box with the with the foreign company it belongs to
-            Dim fcData = From fc In plcontext.ForeignCompanies Where fc.PhoneNumber = phone_number_txt.Text Select fc
-            If fcData.Any Then
-                fcComboBox.DataSource = fcData.ToList
-                fcComboBox.DisplayMember = "FName"
-                fcComboBox.ValueMember = "ID"
-                'Set AutoCompleteMode.
-                fcComboBox.AutoCompleteMode = AutoCompleteMode.Suggest
-                fcComboBox.AutoCompleteSource = AutoCompleteSource.ListItems
-            ElseIf fcData.Count = 0 And phone_number_txt.Text.Length > 9 Then
-                If CallID Is Nothing Then
-                    ' If there are companies with entered phone number, user will be propted to add a new foreign company
-                    Dim ask As MsgBoxResult = MsgBox("No Company with this number exist, Create new Company", MsgBoxStyle.YesNo)
-                    If ask = MsgBoxResult.Yes Then
-                        Me.Hide()
-                        Dim fc As ForeignCompany = New ForeignCompany()
-                        fc.Session = Session
-                        fc.Show()
-                    ElseIf ask = MsgBoxResult.No Then
-                        Refresh()
+        If phone_number_txt.Text <> "" Then
+            Using plcontext As New PhoneLogEntities1
+                ' Sets foreign company index to the company that the phone number entered blongs to
+                Dim fcData = From fc In plcontext.ForeignCompanies Where fc.PhoneNumber = phone_number_txt.Text Select fc
+                If fcData.Any Then
+                    For i = 0 To fcComboBox.Items.Count - 1
+                        Dim obj As ForeignCompany = fcComboBox.Items(i)
+                        Dim ph = obj.PhoneNumber
+                        If phone_number_txt.Text = ph Then
+                            fcComboBox.SelectedIndex = i
+                            Exit For
+                        End If
+                    Next i
+                ElseIf phone_number_txt.Text.Length > 9 Then
+                    If CallID Is Nothing Then
+                        ' If there are companies with entered phone number, user will be propted to add a new foreign company
+                        Dim ask As MsgBoxResult = MsgBox("No Company with this number exist, Create new Company", MsgBoxStyle.YesNo)
+                        If ask = MsgBoxResult.Yes Then
+                            Me.Hide()
+                            Dim fc As ForeignCompany = New ForeignCompany()
+                            fc.Session = Session
+                            fc.Show()
+                        ElseIf ask = MsgBoxResult.No Then
+                            Refresh()
+                        End If
+                    Else
+                        ' Prompts user that the foreign company associated with this call no longer exist and it cannot be edited only able to delete
+                        MessageBox.Show("Company associated with this call no longer exist, Call cannot be edited")
+                        Dim callData = (From c In plcontext.Calls Where c.ID = CallID Select c).First
+                        fcComboBox.SelectedText = callData.ForeignCompanyName
+                        save_call_btn.Hide()
                     End If
-                Else
-                    ' Prompts user that the foreign company associated with this call no longer exist and it cannot be edited only able to delete
-                    MessageBox.Show("Company associated with this call no longer exist, Call cannot be edited")
-                    Dim callData = (From c In plcontext.Calls Where c.ID = CallID Select c).First
-                    fcComboBox.SelectedText = callData.ForeignCompanyName
-                    save_call_btn.Hide()
                 End If
-            End If
-        End Using
+            End Using
+        End If
     End Sub
     ' Allows only numbers to be entered into phone number text feild
     Private Sub TextBox_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles phone_number_txt.KeyPress
@@ -186,8 +190,7 @@ Public Class Calls
         ' Hides lable and date picker 
         Label1.Hide()
         DateTimePicker1.Hide()
-        ' Clears all feilds and sets comoboxes to blank
-        phone_number_txt.Clear()
+        ' Clears all feilds and sets comoboxes to blank      
         duration_txt.Clear()
         save_call_btn.Show()
         Using plContext As New PhoneLogEntities1
@@ -209,6 +212,7 @@ Public Class Calls
             empComboBox.AutoCompleteMode = AutoCompleteMode.Suggest
             empComboBox.AutoCompleteSource = AutoCompleteSource.ListItems
         End Using
+        phone_number_txt.Clear()
     End Sub
     ' Save button event
     Private Sub save_call_btn_Click(sender As Object, e As EventArgs) Handles save_call_btn.Click
@@ -314,13 +318,14 @@ Public Class Calls
                 Dim fcData = From fc In plContext.ForeignCompanies Where fc.ID = fcComboBox.SelectedValue.ToString Select fc
                 Dim empID As Integer
                 empID = fcData.First.EmployeeID
+                'Populates employee combobox with employee that belongs to selected company
                 Dim empData = From emp In plContext.Employees Where emp.ID = empID Select emp
                 If fcData.Any Then
-                    phone_number_txt.Text = fcData.First.PhoneNumber
                     empComboBox.DataSource = empData.ToList ' Creates a list from the query results and sets it as the datasource of the combobox
                     empComboBox.DisplayMember = "Name" ' Sets employee names to be displayed on combobox
                     empComboBox.ValueMember = "ID" ' Sets the value of the list item
                     empComboBox.SelectedIndex = 0
+                    phone_number_txt.Text = fcData.First.PhoneNumber ' Sets phone number text to the selected company phone number
                 End If
             End Using
         End If
